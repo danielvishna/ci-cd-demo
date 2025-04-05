@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04  # 👈 USE THIS INSTEAD OF "ubuntu-latest"
+    runs-on: ubuntu  # 👈 USE THIS INSTEAD OF "ubuntu-latest"
 
     steps:
       - name: Checkout code
