@@ -20,3 +20,14 @@ jobs:
       run: pip install pytest
     - name: Run tests
       run: pytest
+    - name: Run tests and save report
+      run: |
+        mkdir test-reports
+        pytest --junitxml=test-reports/results.xml
+
+    - name: Upload test report
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-results
+        path: test-reports/results.xml
+
