@@ -11,24 +11,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
-    - name: Install dependencies
-      run: pip install pytest
-    - name: Run tests and save report
-      run: |
-        mkdir test-reports
-        pytest --junitxml=test-reports/results.xml
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Upload test report
-      uses: actions/upload-artifact@v3
-      with:
-        name: test-results
-        path: test-reports/results.xml
-    - name: Run tests
-      run: pytest
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
 
+      - name: Install dependencies
+        run: pip install pytest
 
+      - name: Run tests and save report
+        run: |
+          mkdir test-reports
+          pytest --junitxml=test-reports/results.xml
+
+      - name: Upload test report
+        uses: actions/upload-artifact@v3.1.3  # 👈 This version works with Ubuntu 24.04
+        with:
+          name: test-results
+          path: test-reports/results.xml
